@@ -1,9 +1,15 @@
 import React from 'react';
+import Sidebar from './pages/Sidebar';
 
 class App extends React.Component {
   render() {
-    return (<p>TrybeTunes</p>);
+    return (
+      <div>
+        <p>TrybeTunes</p>
+        <Sidebar />
+      </div>
+    );
   }
 }
-//
+
 export default App;
