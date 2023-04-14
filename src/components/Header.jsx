@@ -1,16 +1,38 @@
 import React from 'react';
+import { getUser } from '../services/userAPI';
 
 class Header extends React.Component {
+  state = {
+    loading: true,
+    userName: '',
+  };
+
+  async componentDidMount() {
+    try {
+      const user = await getUser();
+      this.setState({
+        loading: false,
+        userName: user.name,
+      });
+    } catch (error) {
+      console.error('Error fetching user:', error);
+    }
+  }
+
   render() {
+    const { loading, userName } = this.state;
+
+    if (loading === true) {
+      return (
+        <header data-testid="header-component">
+          <span data-testid="header-user-loading">Carregando...</span>
+        </header>
+      );
+    }
     return (
-      <div />
-    //   <header className="Header">
-    //     <button className="toggle-button" type="button">
-    //       <img src={ToggleButtonImage} alt="Toggle sidebar button" />
-    //     </button>
-    //     <img src={TrybeLogo} alt="Trybe Logo" />
-    //     <h4>Curso</h4>
-    //   </header>
+      <header data-testid="header-component">
+        <span data-testid="header-user-name">{userName}</span>
+      </header>
     );
   }
 }
