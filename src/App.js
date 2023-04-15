@@ -1,5 +1,5 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
+// import Sidebar from './components/Sidebar';
 import Content from './components/Content';
 import Header from './components/Header';
 import './App.css';
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <div>
         <p>TrybeTunes</p>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <Content />
         <Header />
       </div>
