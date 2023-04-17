@@ -1,35 +1,35 @@
 .header {
+  align-items: center;
   background-color: black;
-  color: #FFFFFF;
+  color: white;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 20px;
 }
 
 nav {
+  align-items: center;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
 }
 
 nav a {
-  color: #FFFFFF;
-  text-decoration: none;
+  color: white;
   margin-right: 20px;
+  text-decoration: none;
 }
 
 nav a:hover {
-  color: #1DB954;
+  color: #1db954;
 }
 
 .header-user-name {
-  font-weight: bold;
+  font-weight: 700;
   margin-left: 20px;
 }
 
 .header-user-loading {
-  font-weight: bold;
+  font-weight: 700;
   margin-left: 20px;
 }
 
@@ -41,47 +41,47 @@ body {
 
 /* Use a sans-serif font for the headings and text */
 h1, p, input, button {
-  font-family: 'Open Sans', sans-serif;
+  font-family: Open Sans , sans-serif;
 }
 
 /* Style the "Login" heading */
 h1 {
-  font-size: 48px;
-  font-weight: bold;
   color: white;
-  text-align: center;
+  font-size: 48px;
+  font-weight: 700;
   margin-top: 100px;
+  text-align: center;
 }
 
 /* Style the input field for the username */
 input {
+  background-color: #202020;
+  border: 1px solid gray;
+  border-radius: 4px;
+  color: white;
   display: block;
-  width: 300px;
+  font-size: 20px;
   height: 40px;
   margin: 50px auto;
-  border: 1px solid gray;
   padding: 10px;
-  border-radius: 4px;
-  font-size: 20px;
-  background-color: #202020;
-  color: white;
+  width: 300px;
 }
 
 /* Style the "Entrar" button */
 button {
-  display: block;
-  width: 150px;
-  height: 50px;
-  margin: 0 auto;
+  background-color: #1db954;
   border: none;
   border-radius: 25px;
-  background-color: #1db954;
   color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
   cursor: pointer;
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  height: 50px;
+  margin: 0 auto;
+  text-transform: uppercase;
   transition: all 0.2s ease-in-out;
+  width: 150px;
 }
 
 button:hover {
@@ -90,17 +90,19 @@ button:hover {
 
 /* Style the loading spinner */
 .loading {
-  display: block;
-  margin: 50px auto;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #1db954;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
   animation: spin 1s linear infinite;
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #1db954;
+  display: block;
+  height: 40px;
+  margin: 50px auto;
+  width: 40px;
 }
 
 @keyframes spin {
+
   0% { transform: rotate(0deg); }
+
   100% { transform: rotate(360deg); }
 }
