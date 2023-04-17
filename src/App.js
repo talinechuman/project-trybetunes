@@ -3,15 +3,15 @@ import React from 'react';
 import Content from './components/Content';
 import Header from './components/Header';
 import './App.css';
+import Login from './pages/Login';
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <p>TrybeTunes</p>
-        {/* <Sidebar /> */}
-        <Content />
         <Header />
+        <Login />
+        <Content />
       </div>
     );
   }

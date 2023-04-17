@@ -1,18 +1,106 @@
-body {
-  background-color: #181818;
-  text-align: center;
+.header {
+  background-color: black;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 
-p {
+nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+nav a {
+  color: #FFFFFF;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+nav a:hover {
+  color: #1DB954;
+}
+
+.header-user-name {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+.header-user-loading {
+  font-weight: bold;
+  margin-left: 20px;
+}
+
+/* Set the background color to black or dark gray */
+body {
+  background-color: #121212;
   color: white;
 }
 
-.header {
-  align-items: center;
-  background-color: var(--green-color);
-  color: var(--black-color);
-  display: flex;
-  height: 80px;
-  justify-content: space-between;
-  padding: 0 20px;
+/* Use a sans-serif font for the headings and text */
+h1, p, input, button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Style the "Login" heading */
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  margin-top: 100px;
+}
+
+/* Style the input field for the username */
+input {
+  display: block;
+  width: 300px;
+  height: 40px;
+  margin: 50px auto;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 20px;
+  background-color: #202020;
+  color: white;
+}
+
+/* Style the "Entrar" button */
+button {
+  display: block;
+  width: 150px;
+  height: 50px;
+  margin: 0 auto;
+  border: none;
+  border-radius: 25px;
+  background-color: #1db954;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  box-shadow: 0 0 10px #1db954;
+}
+
+/* Style the loading spinner */
+.loading {
+  display: block;
+  margin: 50px auto;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1db954;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
