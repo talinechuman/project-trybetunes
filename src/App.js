@@ -10,8 +10,8 @@ class App extends React.Component {
       <div>
         <p>TrybeTunes</p>
         {/* <Sidebar /> */}
-        <Content />
         <Header />
+        <Content />
       </div>
     );
   }
