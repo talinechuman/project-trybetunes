@@ -34,9 +34,9 @@ class Header extends React.Component {
       <header data-testid="header-component" className="header">
         <p>TrybeTunes</p>
         <nav>
-          <Link to="/Search" data-testid="link-to-search">Pesquisar</Link>
-          <Link to="/Favorites" data-testid="link-to-favorites">Favoritas</Link>
-          <Link to="/Profile" data-testid="link-to-profile">Perfil</Link>
+          <Link to="/search" data-testid="link-to-search">Pesquisar</Link>
+          <Link to="/favorites" data-testid="link-to-favorites">Favoritas</Link>
+          <Link to="/profile" data-testid="link-to-profile">Perfil</Link>
         </nav>
         <span data-testid="header-user-name">{userName}</span>
 
