@@ -1,40 +1,91 @@
 import React from 'react';
 import Loading from '../components/Loading';
+import searchAlbumsAPI from '../services/searchAlbumsAPI';
+import Album from './AlbumArtist';
 
 class Search extends React.Component {
   state = {
-    searchInput: '',
+    search: '',
+    albunsSearch: [],
     loadingSearch: false,
+    invalidRequest: false,
+    searchInput: '',
   };
 
   validateButtonSearch = () => {
-    const { searchInput } = this.state;
+    const { search } = this.state;
     const numMin = 2;
-    return searchInput.length < numMin;
+    return search.length < numMin;
+  };
+
+  getAlbuns = async () => {
+    const { search } = this.state;
+    const searchInput = search;
+
+    this.setState({ loadingSearch: false, search: '' });
+    const albunsSearch = await searchAlbumsAPI(search);
+    if (albunsSearch.length === 0) {
+      this.setState({
+        searchInput,
+        invalidRequest: true,
+        albunsSearch: [],
+      });
+    } else {
+      this.setState({
+        searchInput,
+        albunsSearch,
+        invalidRequest: false,
+      });
+    }
+  };
+
+  renderAlbums = () => {
+    const { albunsSearch, invalidRequest, searchInput } = this.state;
+    if (!invalidRequest) {
+      return (
+        <section>
+          {
+            albunsSearch.length > 0 && (
+              <p>{`Resultado de álbuns de: ${searchInput}`}</p>
+            )
+          }
+          {albunsSearch.map((album) => (
+            <Album key={ album.collectionId } info={ album } />
+          ))}
+        </section>
+      );
+    }
+    return <p data-testid="no-albums-found">Nenhum álbum foi encontrado</p>;
+  };
+
+  onInputChange = ({ target }) => {
+    this.setState({ search: target.value });
   };
 
   render() {
-    const { searchInput, loadingSearch } = this.state;
+    const { loadingSearch, search } = this.state;
     return (
       <div data-testid="page-search">
         <p>Search</p>
         <input
           data-testid="search-artist-input"
           type="text"
-          value={ searchInput }
-          name="nameSearch"
-          onChange={ (event) => this.setState({ searchInput: event.target.value }) }
+          name="search"
+          value={ search }
+          onChange={ this.onInputChange }
         />
         <button
           data-testid="search-artist-button"
           type="button"
           disabled={ this.validateButtonSearch() }
-          // onClick={ this.handleCreateUser }
+          onClick={ this.getAlbuns }
         >
           Pesquisar
         </button>
         {loadingSearch && <Loading />}
-        {/* // Exibe o componente "Loading" enquanto "loading" for verdadeiro */}
+        <section>
+          {this.renderAlbums()}
+        </section>
       </div>
     );
   }

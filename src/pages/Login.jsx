@@ -9,11 +9,11 @@ class Login extends React.Component {
     loading: false,
   };
 
-  validateButton = () => {
-    const { name } = this.state;
-    const numMin = 3;
-    return name.length < numMin;
-  };
+  // validateButton = () => {
+  //   const { name } = this.state;
+  //   const numMin = 3;
+  //   return name.length < numMin;
+  // };
 
   handleCreateUser = async () => {
     const { name } = this.state;
@@ -30,6 +30,7 @@ class Login extends React.Component {
   };
 
   render() {
+    const numMin = 3;
     const { name, loading } = this.state;
     return (
       <div data-testid="page-login">
@@ -44,7 +45,7 @@ class Login extends React.Component {
         <button
           data-testid="login-submit-button"
           type="button"
-          disabled={ this.validateButton() }
+          disabled={ name.length < numMin }
           onClick={ this.handleCreateUser }
         >
           Entrar
