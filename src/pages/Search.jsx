@@ -22,7 +22,8 @@ class Search extends React.Component {
     const { search } = this.state;
     const searchInput = search;
 
-    this.setState({ loadingSearch: false, search: '' });
+    this.setState({ search: '' });
+
     const albunsSearch = await searchAlbumsAPI(search);
     if (albunsSearch.length === 0) {
       this.setState({
