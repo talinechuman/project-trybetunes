@@ -1,16 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   state = {
     isFavorites: false,
   };
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   const { trackId } = this.props;
+  //   const musicsFavorites = JSON.parse(localStorage.getItem('favorite_songs'));
+  //   console.log(getFavoriteSongs);
+  //   this.setState({
+  //     isFavorites: musicsFavorites.some((music) => music.trackId === trackId) });
+  // }
+
+  async componentDidMount() {
     const { trackId } = this.props;
-    const musicsFavorites = JSON.parse(localStorage.getItem('favorite_songs'));
+    const musicsFavorites = await getFavoriteSongs();
     this.setState({
-      isFavorites: musicsFavorites.some((music) => music.trackId === trackId) });
+      isFavorites: musicsFavorites.some((music) => music.trackId === trackId),
+    });
   }
 
   handleChange = (event) => {

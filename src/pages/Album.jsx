@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state = {
@@ -11,7 +11,6 @@ class Album extends React.Component {
     album: '',
     musics: [],
     loading: true,
-    favorite: [],
   };
 
   componentDidMount() {
@@ -38,14 +37,14 @@ class Album extends React.Component {
     this.setState({ loading: false });
   };
 
-  isFavorites = async () => {
-    this.setState({ loading: true });
-    const favorite = await getFavoriteSongs();
-    this.setState({ favorite, loading: false });
-  };
+  // isFavorites = async () => {
+  //   this.setState({ loading: true });
+  //   const favorite = await getFavoriteSongs();
+  //   this.setState({ favorite, loading: false });
+  // };
 
   render() {
-    const { name, album, musics, loading, favorite } = this.state;
+    const { name, album, musics, loading } = this.state;
     return (
       <>
         <div data-testid="page-album" />
@@ -61,10 +60,10 @@ class Album extends React.Component {
               previewUrl={ music.previewUrl }
               artworkUrl100={ music.artworkUrl100 }
               onAddSong={ () => this.handleAddSong(music) }
-              isFavorites={ this.isFavorites }
-              checked={
-                favorite.some(({ trackId }) => trackId === music.trackId)
-              }
+              // isFavorites={ this.isFavorites }
+              // checked={
+              //   favorite.some(({ trackId }) => trackId === music.trackId)
+              // }
             />
           ))}
         </div>
