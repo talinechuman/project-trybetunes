@@ -7,21 +7,20 @@ class MusicCard extends React.Component {
     isFavorites: false,
   };
 
-  // componentDidMount() {
-  //   const { trackId } = this.props;
-  //   const musicsFavorites = JSON.parse(localStorage.getItem('favorite_songs'));
-  //   console.log(getFavoriteSongs);
-  //   this.setState({
-  //     isFavorites: musicsFavorites.some((music) => music.trackId === trackId) });
-  // }
-
-  async componentDidMount() {
+  componentDidMount() {
     const { trackId } = this.props;
-    const musicsFavorites = await getFavoriteSongs();
+    const musicsFavorites = JSON.parse(localStorage.getItem('favorite_songs'));
     this.setState({
-      isFavorites: musicsFavorites.some((music) => music.trackId === trackId),
-    });
+      isFavorites: musicsFavorites.some((music) => music.trackId === trackId) });
   }
+
+  // async componentDidMount() {
+  //   const { trackId } = this.props;
+  //   const musicsFavorites = await getFavoriteSongs();
+  //   this.setState({
+  //     isFavorites: musicsFavorites.some((music) => music.trackId === trackId),
+  //   });
+  // }
 
   handleChange = (event) => {
     const { target } = event;
