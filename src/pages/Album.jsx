@@ -22,7 +22,6 @@ class Album extends React.Component {
     const { match } = this.props;
     const { id } = match.params;
     const listMusics = await getMusics(id);
-    console.log('Song added to favorites!');
     const { artistName, collectionName } = listMusics[0];
 
     this.setState({
@@ -34,7 +33,6 @@ class Album extends React.Component {
   };
 
   handleAddSong = async (music) => {
-    console.log('Adding song to favorites:', music);
     this.setState({ loading: true });
     await addSong(music);
     this.setState({ loading: false });
