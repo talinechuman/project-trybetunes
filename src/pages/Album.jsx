@@ -16,7 +16,6 @@ class Album extends React.Component {
 
   componentDidMount() {
     this.getApiMusics();
-    // this.isFavorites();
   }
 
   getApiMusics = async () => {
@@ -38,23 +37,12 @@ class Album extends React.Component {
   };
 
   handleAddSong = async (music) => {
-    // await this.isFavorites(music.trackId);
     await addSong(music);
   };
 
   handleRemoveSong = async (music) => {
-    // await this.isFavorites(music.trackId);
     await removeSong(music);
   };
-
-  // isFavorites = async (trackId) => {
-  //   this.setState({ loading: true });
-  //   const musicsFavorites = await getFavoriteSongs();
-  //   this.setState({
-  //     favorite: musicsFavorites.some((music) => music.trackId === trackId),
-  //     loading: false,
-  //   });
-  // };
 
   render() {
     const { name, album, musics, loading, favorite } = this.state;
@@ -91,12 +79,6 @@ Album.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-  // trackId: PropTypes.string,
-  // isFavorites: PropTypes.func.isRequired,
-};
-
-Album.defaultProps = {
-  // trackId: '',
 };
 
 export default Album;

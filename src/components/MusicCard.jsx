@@ -16,7 +16,6 @@ class MusicCard extends React.Component {
     const { onAddSong, removeSong, loadingChange } = this.props;
     loadingChange(true);
 
-    // this.setState({ isFavorites: target.checked });
     if (target.checked) {
       await onAddSong();
     } else {
@@ -70,7 +69,7 @@ MusicCard.propTypes = {
   trackName: PropTypes.string,
   previewUrl: PropTypes.string,
   artworkUrl100: PropTypes.string,
-  trackId: PropTypes.number,
+  trackId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onAddSong: PropTypes.func.isRequired,
   removeSong: PropTypes.func.isRequired,
   loadingChange: PropTypes.func.isRequired,
