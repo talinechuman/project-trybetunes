@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
 import Loading from '../components/Loading';
-import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   state = {
@@ -16,7 +16,7 @@ class Album extends React.Component {
 
   componentDidMount() {
     this.getApiMusics();
-    this.isFavorites();
+    // this.isFavorites();
   }
 
   getApiMusics = async () => {
@@ -33,20 +33,28 @@ class Album extends React.Component {
     });
   };
 
-  handleAddSong = async (music) => {
-    this.setState({ loading: true });
-    await addSong(music);
-    this.setState({ loading: false });
+  loadingChange = (bool) => {
+    this.setState({ loading: bool });
   };
 
-  isFavorites = async (trackId) => {
-    this.setState({ loading: true });
-    const musicsFavorites = await getFavoriteSongs();
-    this.setState({
-      favorite: musicsFavorites.some((music) => music.trackId === trackId),
-      loading: false,
-    });
+  handleAddSong = async (music) => {
+    // await this.isFavorites(music.trackId);
+    await addSong(music);
   };
+
+  handleRemoveSong = async (music) => {
+    // await this.isFavorites(music.trackId);
+    await removeSong(music);
+  };
+
+  // isFavorites = async (trackId) => {
+  //   this.setState({ loading: true });
+  //   const musicsFavorites = await getFavoriteSongs();
+  //   this.setState({
+  //     favorite: musicsFavorites.some((music) => music.trackId === trackId),
+  //     loading: false,
+  //   });
+  // };
 
   render() {
     const { name, album, musics, loading, favorite } = this.state;
@@ -56,8 +64,8 @@ class Album extends React.Component {
         <div>
           <p data-testid="artist-name">{name}</p>
           <p data-testid="album-name">{album}</p>
-          {loading === true && <Loading />}
-          {!loading && musics.map((music) => (
+          {loading && <Loading />}
+          {musics.map((music) => (
             <MusicCard
               key={ music.trackId }
               trackId={ music.trackId }
@@ -65,8 +73,10 @@ class Album extends React.Component {
               previewUrl={ music.previewUrl }
               artworkUrl100={ music.artworkUrl100 }
               onAddSong={ () => this.handleAddSong(music) }
+              removeSong={ () => this.handleRemoveSong(music) }
               isFavorites={ favorite }
               checked={ favorite }
+              loadingChange={ this.loadingChange }
             />
           ))}
         </div>
