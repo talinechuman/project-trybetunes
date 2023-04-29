@@ -70,9 +70,9 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string,
   artworkUrl100: PropTypes.string,
   trackId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  onAddSong: PropTypes.func.isRequired,
+  onAddSong: PropTypes.func,
   removeSong: PropTypes.func.isRequired,
-  loadingChange: PropTypes.func.isRequired,
+  loadingChange: PropTypes.func,
 };
 
 MusicCard.defaultProps = {
@@ -80,6 +80,8 @@ MusicCard.defaultProps = {
   previewUrl: '',
   artworkUrl100: '',
   trackId: '',
+  loadingChange: () => {},
+  onAddSong: () => {},
 };
 
 export default MusicCard;
